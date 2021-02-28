@@ -15,13 +15,18 @@ npm install --save react-restrict-input
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-restrict-input'
-import 'react-restrict-input/dist/index.css'
+import { ReactRestrictInput } from 'react-restrict-input'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+  const [value, setValue] = React.useState('')
+  return (
+    <ReactRestrictInput
+      value={value}
+      onChange={setValue}
+      maxChars={10}
+      restrict={/[0-9a-z我]/}
+    />
+  )
 }
 ```
 

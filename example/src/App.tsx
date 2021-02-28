@@ -15,7 +15,6 @@ const App = () => {
         value={value}
         onChange={setValue}
         maxChars={10}
-        restrict={/./}
       />
     </>
   )

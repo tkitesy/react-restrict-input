@@ -43,7 +43,7 @@ export function ReactRestrictInput(props: ReactRestrictInputProps) {
           if (filterValue.length > maxLength) {
             const [, end] = lastInputSelection.current
             Promise.resolve().then(() => {
-              inputRef.current!.setSelectionRange(end, end, 'forward')
+              inputRef.current!.setSelectionRange(end, end)
             })
             return
           }
@@ -71,12 +71,16 @@ export function ReactRestrictInput(props: ReactRestrictInputProps) {
     (data: string) => {
       const lastValue = lastInputValue.current
       const [start, end] = lastInputSelection.current
+
       if (maxLength && maxLength > 0) {
         const filterValue = filterByRestrict(restrict, data)
         const remainLen = maxLength + (end - start) - lastValue.length
         if (remainLen > 0) {
           data = filterValue.substring(0, remainLen)
         } else {
+          Promise.resolve().then(() => {
+            inputRef.current!.setSelectionRange(end, end)
+          })
           return lastValue
         }
       }
@@ -85,12 +89,10 @@ export function ReactRestrictInput(props: ReactRestrictInputProps) {
         lastValue.substring(0, start) +
         data +
         lastValue.substring(end, lastValue.length)
+      const selectionEnd = start + data.length
+
       Promise.resolve().then(() => {
-        inputRef.current!.setSelectionRange(
-          start + data.length,
-          start + data.length,
-          'forward'
-        )
+        inputRef.current!.setSelectionRange(selectionEnd, selectionEnd)
       })
       return inputValue
     },
@@ -99,9 +101,9 @@ export function ReactRestrictInput(props: ReactRestrictInputProps) {
 
   const handleCompositionEnd = React.useCallback(
     (e: React.CompositionEvent<HTMLInputElement>) => {
-      isCompositionInput.current = false
       let data = e.data
       onChange(calculateInputValue(data))
+      isCompositionInput.current = false
       e.preventDefault()
     },
     [calculateInputValue, onChange]
