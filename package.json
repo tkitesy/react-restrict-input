@@ -1,7 +1,7 @@
 {
   "name": "react-restrict-input",
-  "version": "1.0.0",
-  "description": "Made with create-react-library",
+  "version": "1.0.1",
+  "description": "Input that can limit the length and character of user input, support paste and Chinese input",
   "author": "tkitesy",
   "license": "MIT",
   "repository": "tkitesy/react-restrict-input",
