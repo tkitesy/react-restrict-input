@@ -1,10 +1,24 @@
-import React from 'react'
-
-import { ExampleComponent } from 'react-restrict-input'
-import 'react-restrict-input/dist/index.css'
+import * as React from 'react'
+import { ReactRestrictInput } from 'react-restrict-input'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const [value, setValue] = React.useState('')
+  return (
+    <>
+      <ReactRestrictInput
+        value={value}
+        onChange={setValue}
+        maxChars={10}
+        restrict={/[0-9a-z我]/}
+      />
+      <ReactRestrictInput
+        value={value}
+        onChange={setValue}
+        maxChars={10}
+        restrict={/./}
+      />
+    </>
+  )
 }
 
 export default App

@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { ReactRestrictInput } from '.'
 
 describe('ExampleComponent', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(ReactRestrictInput).toBeTruthy()
   })
 })
