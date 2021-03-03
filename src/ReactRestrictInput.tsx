@@ -72,11 +72,11 @@ export function ReactRestrictInput(props: ReactRestrictInputProps) {
       const lastValue = lastInputValue.current
       const [start, end] = lastInputSelection.current
 
+      let filterValue = filterByRestrict(restrict, data)
       if (maxLength && maxLength > 0) {
-        const filterValue = filterByRestrict(restrict, data)
         const remainLen = maxLength + (end - start) - lastValue.length
         if (remainLen > 0) {
-          data = filterValue.substring(0, remainLen)
+          filterValue = filterValue.substring(0, remainLen)
         } else {
           Promise.resolve().then(() => {
             inputRef.current!.setSelectionRange(end, end)
@@ -87,9 +87,9 @@ export function ReactRestrictInput(props: ReactRestrictInputProps) {
 
       const inputValue =
         lastValue.substring(0, start) +
-        data +
+        filterValue +
         lastValue.substring(end, lastValue.length)
-      const selectionEnd = start + data.length
+      const selectionEnd = start + filterValue.length
 
       Promise.resolve().then(() => {
         inputRef.current!.setSelectionRange(selectionEnd, selectionEnd)

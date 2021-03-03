@@ -8,7 +8,7 @@ const App = () => {
       <ReactRestrictInput
         value={value}
         onChange={setValue}
-        maxChars={10}
+        // maxChars={10}
         restrict={/[0-9a-z我]/}
       />
       <ReactRestrictInput
