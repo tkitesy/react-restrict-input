@@ -1,6 +1,6 @@
 # react-restrict-input
 
-## Input box that can limit the length and character of user input, support paste and Chinese input
+## 可限制输入字符的输入框，支持粘贴和中文
 
 [![NPM](https://img.shields.io/npm/v/react-restrict-input.svg)](https://www.npmjs.com/package/react-restrict-input) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
